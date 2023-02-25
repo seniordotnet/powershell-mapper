@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowershellMapper", "PowershellMapper\PowershellMapper.csproj", "{EE6F0ED0-50A8-423F-8616-ABD2A44A4734}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTesting", "ConsoleTesting\ConsoleTesting.csproj", "{92888144-B7AA-490B-A437-682E43D116D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE6F0ED0-50A8-423F-8616-ABD2A44A4734}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE6F0ED0-50A8-423F-8616-ABD2A44A4734}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE6F0ED0-50A8-423F-8616-ABD2A44A4734}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE6F0ED0-50A8-423F-8616-ABD2A44A4734}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92888144-B7AA-490B-A437-682E43D116D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92888144-B7AA-490B-A437-682E43D116D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92888144-B7AA-490B-A437-682E43D116D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92888144-B7AA-490B-A437-682E43D116D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
