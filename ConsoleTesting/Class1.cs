@@ -1,6 +1,6 @@
 ﻿using System.Management.Automation;
-using PowershellMapper;
-using PowershellMapper.Commands;
+using PSMapper;
+using PSMapper.Commands;
 
 namespace ConsoleTesting;
 

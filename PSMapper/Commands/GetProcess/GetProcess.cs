@@ -1,6 +1,6 @@
 ﻿// using System.Management.Automation;
 //
-// namespace PowershellMapper.Commands;
+// namespace PSMapper.Commands;
 //
 // public class GetProcess : ICommand<Get>
 // {

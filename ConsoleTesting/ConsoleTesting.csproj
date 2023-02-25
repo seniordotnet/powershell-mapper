@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PowershellMapper\PowershellMapper.csproj" />
+      <ProjectReference Include="..\PSMapper\PSMapper.csproj" />
     </ItemGroup>
 
 </Project>

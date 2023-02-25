@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PowershellMapper.Poco.Arp;
+namespace PSMapper.Poco.Arp;
 
 public class ArpInfo
 {

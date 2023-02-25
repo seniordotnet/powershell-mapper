@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Title>PowerShellMapper</Title>
+        <Authors>seniordotnet</Authors>
+        <Description>Object powershell mapper for popular powershell commands</Description>
+        <Copyright>seniordotnet</Copyright>
+        <PackageProjectUrl>https://github.com/seniordotnet/powershell-mapper</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/seniordotnet/powershell-mapper</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/seniordotnet/powershell-mapper</RepositoryUrl>
+        <RepositoryType>github</RepositoryType>
+        <PackageTags>powershell, object, mapper</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.3.3" />
+      <PackageReference Include="System.Management.Automation" Version="7.3.3" />
+    </ItemGroup>
+
+</Project>

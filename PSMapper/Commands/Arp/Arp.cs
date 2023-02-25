@@ -1,8 +1,8 @@
 ﻿using System.Management.Automation;
-using PowershellMapper.Poco.Arp;
-using PowershellMapper.Extensions;
+using PSMapper.Extensions;
+using PSMapper.Poco.Arp;
 
-namespace PowershellMapper.Commands;
+namespace PSMapper.Commands;
 
 public sealed class Arp : ICommand<ArpInfo>
 {

@@ -1,4 +1,4 @@
-﻿namespace PowershellMapper.Extensions;
+﻿namespace PSMapper.Extensions;
 
 public static class StringParserExtension
 {
