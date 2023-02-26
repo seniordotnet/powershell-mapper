@@ -1,8 +1,6 @@
-﻿using System.Management.Automation;
+﻿namespace PSMapper.Commands;
 
-namespace PSMapper.Commands;
-
-public interface ICommand<T>
+public interface IPsCommandEmpty<T>
 {
     /// <summary>
     /// Executes command

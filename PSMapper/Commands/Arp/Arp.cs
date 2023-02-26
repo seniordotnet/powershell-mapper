@@ -4,7 +4,7 @@ using PSMapper.Poco.Arp;
 
 namespace PSMapper.Commands.Arp;
 
-public sealed class Arp : ICommand<ArpInfo>
+public sealed class Arp : IPsCommand, IPsCommandEmpty<ArpInfo>
 {
     private readonly PowerShell _powerShell;
     

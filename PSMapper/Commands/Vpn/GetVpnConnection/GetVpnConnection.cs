@@ -3,7 +3,7 @@ using PSMapper.Poco.Vpn.VpnConnection;
 
 namespace PSMapper.Commands.Vpn.GetVpnConnection;
 
-public class GetVpnConnection : ICommand<VpnConnectionInfo>
+public sealed class GetVpnConnection : IPsCommand, IPsCommandEmpty<VpnConnectionInfo>
 {
     private readonly PowerShell _powerShell;
 

@@ -4,7 +4,7 @@ using PSMapper.Poco.GetProcess;
 
 namespace PSMapper.Commands.GetProcess;
 
-public class GetProcess : ICommand<GetProcessInfo>
+public sealed class GetProcess : IPsCommand, IPsCommandEmpty<GetProcessInfo>
 {
      private readonly PowerShell _powerShell;
      
