@@ -1,4 +1,5 @@
 # Powershell-mapper
+[nuget](https://www.nuget.org/packages/PSMapper)
 Object mapper for most popular commands executing results
 
 ## Installation
