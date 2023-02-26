@@ -13,7 +13,8 @@
         <RepositoryUrl>https://github.com/seniordotnet/powershell-mapper</RepositoryUrl>
         <RepositoryType>github</RepositoryType>
         <PackageTags>powershell, object, mapper</PackageTags>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
+        <PackageReleaseNotes>add tracert command</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,6 +24,12 @@
 
     <ItemGroup>
       <Folder Include="Poco\Vpn" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\README.md">
+        <Link>README.md</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
