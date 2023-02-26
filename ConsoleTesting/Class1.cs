@@ -14,13 +14,13 @@ public class Class1
     {
         using PowerShell? pw = PowerShell.Create();
 
-        TraceRt traceRt = new TraceRt(pw);
-        TraceRtInfo traceRtInfo = await traceRt.ExecuteAsync("google.com");
-        
-        foreach (var traceRtInfoData in traceRtInfo.Data)
-        {
-            Console.WriteLine($"{traceRtInfoData.FirstPacket} {traceRtInfoData.SecondPacket} {traceRtInfoData.ThirdPacket} {traceRtInfoData.Destination}");
-        }
+        // TraceRt traceRt = new TraceRt(pw);
+        // TraceRtInfo traceRtInfo = await traceRt.ExecuteAsync("google.com");
+        //
+        // foreach (var traceRtInfoData in traceRtInfo.Data)
+        // {
+        //     Console.WriteLine($"{traceRtInfoData.FirstPacket} {traceRtInfoData.SecondPacket} {traceRtInfoData.ThirdPacket} {traceRtInfoData.Destination}");
+        // }
         // DisconnectFromVpn disconnectFromVpn = new DisconnectFromVpn(pw);
         // await disconnectFromVpn.ExecuteAsync("BegetVPN");
 
@@ -28,14 +28,11 @@ public class Class1
         // ConnectToVpn connectToVpn = new ConnectToVpn();
         // await connectToVpn.ExecuteAsync("BegetVPN");
 
-        // Arp arp = new Arp(pw);
-        // Stopwatch sw = new Stopwatch();
-        // sw.Start();
-        // var arpTable = await arp.ExecuteAsync();
-        // Console.WriteLine($"Elapsed: {sw.ElapsedMilliseconds}ms");
-        // foreach (var arpEntry in arpTable.Rows)
-        // {
-        //     Console.WriteLine($"{arpEntry.InternetAddress} {arpEntry.PhysicalAddress}");
-        // }
+        Arp arp = new Arp(pw);
+        var arpTable = await arp.ExecuteAsync();
+        foreach (var arpEntry in arpTable.Rows)
+        {
+            Console.WriteLine($"{arpEntry.InternetAddress} {arpEntry.PhysicalAddress}");
+        }
     }
 }

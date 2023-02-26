@@ -1,11 +1,31 @@
-# powershell-mapper
+# Powershell-mapper
 Object mapper for most popular commands executing results
 
+## Installation
+### .NET Cli
+dotnet add package PSMapper
+### Package Manager Console
+NuGet\Install-Package PSMapper
+## Usage
+### Example
 
-Current supported commands:
-1) arp -a
-2) Get-Process
-3) Get-VpnConnection
-4) ConnectToVpn using rsdial
-5) Disconnect from vpn using rsdial
-6) TraceRt command to trace route to the host
+#### To get tracert mapped result
+```csharp
+TraceRt traceRt = new TraceRt(pw);
+TraceRtInfo traceRtInfo = await traceRt.ExecuteAsync("google.com");
+
+foreach (var traceRtInfoData in traceRtInfo.Data)
+{
+    Console.WriteLine($"{traceRtInfoData.FirstPacket} {traceRtInfoData.SecondPacket} {traceRtInfoData.ThirdPacket} {traceRtInfoData.Destination}");
+}
+```
+
+### To get arp -a mapped result
+```csharp
+Arp arp = new Arp(pw);
+var arpTable = await arp.ExecuteAsync();
+foreach (var arpEntry in arpTable.Rows)
+{
+    Console.WriteLine($"{arpEntry.InternetAddress} {arpEntry.PhysicalAddress}");
+}
+```
