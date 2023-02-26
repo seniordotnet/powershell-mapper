@@ -1,4 +1,5 @@
 ﻿using System.Management.Automation;
+using PSMapper.Commands.IPsCommands;
 using PSMapper.Poco.Vpn.VpnConnection;
 
 namespace PSMapper.Commands.Vpn.GetVpnConnection;
@@ -29,7 +30,7 @@ public sealed class GetVpnConnection : PsCommand, IPsCommandEmpty<VpnConnectionI
         _powerShell.AddScript(
             "Set-ExecutionPolicy RemoteSigned; Import-Module VPNClient -Scope Global; Get-VpnConnection");
 
-        PSDataCollection<PSObject>? results = await _powerShell.InvokeAsync();
+        var results = await _powerShell.InvokeAsync();
 
         return new VpnConnectionInfo
         {
@@ -37,7 +38,7 @@ public sealed class GetVpnConnection : PsCommand, IPsCommandEmpty<VpnConnectionI
             {
                 ConnectionStatus = x.Properties["ConnectionStatus"].Value as string,
                 DnsSuffix = x.Properties["DnsSuffix"].Value as string,
-                Guid = Guid.TryParse(x.Properties["Guid"].Value as string, out Guid guid) ? guid : null,
+                Guid = Guid.TryParse(x.Properties["Guid"].Value as string, out var guid) ? guid : null,
                 IdleDisconnectSeconds = (uint) x.Properties["IdleDisconnectSeconds"].Value,
                 IsAutoTriggerEnabled = (bool) x.Properties["IsAutoTriggerEnabled"].Value,
                 Name = x.Properties["Name"].Value as string,

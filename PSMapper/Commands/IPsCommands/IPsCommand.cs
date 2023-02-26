@@ -1,6 +1,6 @@
 ﻿using System.Management.Automation;
 
-namespace PSMapper.Commands;
+namespace PSMapper.Commands.IPsCommands;
 
 public abstract class PsCommand
 {

@@ -1,4 +1,5 @@
 ﻿using System.Management.Automation;
+using PSMapper.Commands.IPsCommands;
 using PSMapper.Extensions;
 using PSMapper.Poco.Arp;
 
@@ -31,7 +32,7 @@ public sealed class Arp : PsCommand, IPsCommandEmpty<ArpInfo>
             .AddCommand("arp")
             .AddArgument("-a");
 
-        PSObject[] response = (await PowerShell.InvokeAsync())
+        var response = (await PowerShell.InvokeAsync())
             .Where(x => !string.IsNullOrWhiteSpace(x?.BaseObject as string)).ToArray();
 
         ArpInfo arpInfo = new();
@@ -39,14 +40,14 @@ public sealed class Arp : PsCommand, IPsCommandEmpty<ArpInfo>
 
         Parallel.For(0, response.Length, index =>
         {
-            PSObject item = response[index];
-            string itemValue = (string) item.BaseObject;
+            var item = response[index];
+            var itemValue = (string) item.BaseObject;
 
             switch (index)
             {
                 case InterfaceRowIndex:
                 {
-                    string[] interfaceInfo = itemValue.SplitRow();
+                    var interfaceInfo = itemValue.SplitRow();
                     arpInfo.Interface = interfaceInfo[1];
                     break;
                 }
@@ -56,7 +57,7 @@ public sealed class Arp : PsCommand, IPsCommandEmpty<ArpInfo>
                 }
                 case > InterfaceRowIndex:
                 {
-                    string[] arpRow = itemValue.SplitRow();
+                    var arpRow = itemValue.SplitRow();
 
                     arpInfo.Rows.Add(new ArpInfo.Data
                     {
