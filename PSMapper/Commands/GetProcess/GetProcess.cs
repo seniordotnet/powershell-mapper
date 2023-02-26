@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Management.Automation;
+using PSMapper.Commands.IPsCommands;
 using PSMapper.Poco.GetProcess;
 
 namespace PSMapper.Commands.GetProcess;

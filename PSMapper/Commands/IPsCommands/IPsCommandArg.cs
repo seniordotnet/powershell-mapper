@@ -1,4 +1,4 @@
-﻿namespace PSMapper.Commands;
+﻿namespace PSMapper.Commands.IPsCommands;
 
 public interface IPsCommandArg<T>
 {

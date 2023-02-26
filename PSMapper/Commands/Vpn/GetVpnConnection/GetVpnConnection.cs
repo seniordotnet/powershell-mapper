@@ -1,4 +1,5 @@
 ﻿using System.Management.Automation;
+using PSMapper.Commands.IPsCommands;
 using PSMapper.Poco.Vpn.VpnConnection;
 
 namespace PSMapper.Commands.Vpn.GetVpnConnection;
