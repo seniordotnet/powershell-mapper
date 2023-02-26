@@ -4,20 +4,50 @@ namespace PSMapper.Poco.TraceRt;
 
 public class TraceRtInfo
 {
-    [JsonPropertyName("domainName")] public string? DomainName { get; set; }
+    /// <summary>
+    /// Domain name
+    /// </summary>
+    [JsonPropertyName("domainName")]
+    public string? DomainName { get; set; }
 
-    [JsonPropertyName("ipAddress")] public string? IpAddress { get; set; }
+    /// <summary>
+    /// Ip address
+    /// </summary>
+    [JsonPropertyName("ipAddress")]
+    public string? IpAddress { get; set; }
 
-    [JsonPropertyName("data")] public List<TraceRtInfoData> Data { get; set; } = new();
+    /// <summary>
+    /// Data
+    /// </summary>
+    [JsonPropertyName("data")]
+    public List<TraceRtInfoData> Data { get; set; } = new();
 
     public class TraceRtInfoData
     {
-        [JsonPropertyName("firstPacket")] public int FirstPacket { get; set; }
+        /// <summary>
+        /// First packet time in ms
+        /// </summary>
+        [JsonPropertyName("firstPacket")]
+        public int FirstPacket { get; set; }
 
-        [JsonPropertyName("secondPacket")] public int SecondPacket { get; set; }
+        /// <summary>
+        /// Second packet time in ms
+        /// </summary>
 
-        [JsonPropertyName("thirdPacket")] public int ThirdPacket { get; set; }
+        [JsonPropertyName("secondPacket")]
+        public int SecondPacket { get; set; }
 
-        [JsonPropertyName("ipAddress")] public string? IpAddress { get; set; }
+        /// <summary>
+        /// Third packet time in ms
+        /// </summary>
+
+        [JsonPropertyName("thirdPacket")]
+        public int ThirdPacket { get; set; }
+
+        /// <summary>
+        /// Destination
+        /// </summary>
+        [JsonPropertyName("ipAddress")]
+        public string? Destination { get; set; }
     }
 }

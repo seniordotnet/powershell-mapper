@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Management.Automation;
 using PSMapper.Commands.Arp;
+using PSMapper.Commands.TraceRt;
 using PSMapper.Commands.Vpn;
 using PSMapper.Commands.Vpn.GetVpnConnection;
+using PSMapper.Poco.TraceRt;
 
 namespace ConsoleTesting;
 
@@ -12,8 +14,15 @@ public class Class1
     {
         using PowerShell? pw = PowerShell.Create();
 
-        DisconnectFromVpn disconnectFromVpn = new DisconnectFromVpn(pw);
-        await disconnectFromVpn.ExecuteAsync("BegetVPN");
+        TraceRt traceRt = new TraceRt(pw);
+        TraceRtInfo traceRtInfo = await traceRt.ExecuteAsync("google.com");
+        
+        foreach (var traceRtInfoData in traceRtInfo.Data)
+        {
+            Console.WriteLine($"{traceRtInfoData.FirstPacket} {traceRtInfoData.SecondPacket} {traceRtInfoData.ThirdPacket} {traceRtInfoData.Destination}");
+        }
+        // DisconnectFromVpn disconnectFromVpn = new DisconnectFromVpn(pw);
+        // await disconnectFromVpn.ExecuteAsync("BegetVPN");
 
 
         // ConnectToVpn connectToVpn = new ConnectToVpn();

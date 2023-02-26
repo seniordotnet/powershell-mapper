@@ -26,7 +26,7 @@ public sealed class GetProcess : PsCommand, IPsCommandEmpty<GetProcessInfo>
      {
          PowerShell.AddCommand("Get-Process");
 
-         PSDataCollection<PSObject>? result = await PowerShell.InvokeAsync();
+         var result = await PowerShell.InvokeAsync();
 
          return new GetProcessInfo
          {
