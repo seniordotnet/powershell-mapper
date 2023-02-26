@@ -34,49 +34,44 @@ public sealed class Arp : ICommand<ArpInfo>
         _powerShell.AddCommand("arp");
         _powerShell.AddArgument("-a");
 
-        return await Task.Run(() =>
-        {
-            {
-                PSObject[] response = _powerShell.EndInvoke(_powerShell.BeginInvoke()).Where(x => !string.IsNullOrWhiteSpace(x?.BaseObject as string)).ToArray();
+        PSObject[] response = (await _powerShell.InvokeAsync()).Where(x => !string.IsNullOrWhiteSpace(x?.BaseObject as string)).ToArray();
 
-                ArpInfo arpInfo = new();
+        ArpInfo arpInfo = new();
 
                 
-                for (int index = 0; index < response.Length; index++)
-                {
-                    PSObject? item = response[index];
-                    string itemValue = (string)item.BaseObject;
+        for (int index = 0; index < response.Length; index++)
+        {
+            PSObject? item = response[index];
+            string itemValue = (string)item.BaseObject;
                     
-                    switch (index)
-                    {
-                        case InterfaceRowIndex:
-                        {
-                            string[] interfaceInfo = itemValue.SplitRow();
-                            arpInfo.Interface = interfaceInfo[1];
-                            break;
-                        }
-                        case ColumnNamesRowIndex:
-                        {
-                            break;
-                        }
-                        case > InterfaceRowIndex:
-                        {
-                            string[] arpRow = itemValue.SplitRow();
-                            
-                            arpInfo.Rows.Add(new ArpInfo.Data()
-                            {
-                                InternetAddress = arpRow[0],
-                                PhysicalAddress = arpRow[1],
-                                Type = arpRow[2]
-                            });
-                            
-                            break;
-                        }
-                    }
+            switch (index)
+            {
+                case InterfaceRowIndex:
+                {
+                    string[] interfaceInfo = itemValue.SplitRow();
+                    arpInfo.Interface = interfaceInfo[1];
+                    break;
                 }
-
-                return arpInfo;
+                case ColumnNamesRowIndex:
+                {
+                    break;
+                }
+                case > InterfaceRowIndex:
+                {
+                    string[] arpRow = itemValue.SplitRow();
+                            
+                    arpInfo.Rows.Add(new ArpInfo.Data()
+                    {
+                        InternetAddress = arpRow[0],
+                        PhysicalAddress = arpRow[1],
+                        Type = arpRow[2]
+                    });
+                            
+                    break;
+                }
             }
-        });
+        }
+
+        return arpInfo;
     }
 }

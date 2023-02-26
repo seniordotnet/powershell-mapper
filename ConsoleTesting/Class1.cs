@@ -1,6 +1,8 @@
 ﻿using System.Management.Automation;
 using PSMapper;
 using PSMapper.Commands;
+using PSMapper.Commands.GetVpnConnection;
+using PSMapper.Poco.VpnConnection;
 
 namespace ConsoleTesting;
 
@@ -8,16 +10,15 @@ public class Class1
 {
     public static async Task Main()
     {
-        using var pw = PowerShell.Create();
+        using PowerShell? pw = PowerShell.Create();
 
-        Arp arp = new Arp(pw);
-        var response = await arp.ExecuteAsync();
+        GetVpnConnection getVpnConnection = new GetVpnConnection(pw);
 
-        Console.WriteLine(response.Interface);
-        
-        foreach (var arpInfo in response.Rows)
+        VpnConnectionInfo a = await getVpnConnection.ExecuteAsync();
+
+        foreach (var vpn in a.Data)
         {
-            Console.WriteLine($"{arpInfo.InternetAddress} {arpInfo.PhysicalAddress} {arpInfo.Type}");
+            Console.WriteLine($"{vpn.Name}  {vpn.Guid}  {vpn.ServerAddress}");
         }
     }
 }

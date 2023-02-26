@@ -13,6 +13,7 @@
         <RepositoryUrl>https://github.com/seniordotnet/powershell-mapper</RepositoryUrl>
         <RepositoryType>github</RepositoryType>
         <PackageTags>powershell, object, mapper</PackageTags>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
