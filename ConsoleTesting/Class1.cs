@@ -1,8 +1,6 @@
-﻿using System.Management.Automation;
-using PSMapper;
-using PSMapper.Commands;
-using PSMapper.Commands.GetVpnConnection;
-using PSMapper.Poco.VpnConnection;
+﻿using System.Diagnostics;
+using System.Management.Automation;
+using PSMapper.Commands.Arp;
 
 namespace ConsoleTesting;
 
@@ -12,13 +10,14 @@ public class Class1
     {
         using PowerShell? pw = PowerShell.Create();
 
-        GetVpnConnection getVpnConnection = new GetVpnConnection(pw);
-
-        VpnConnectionInfo a = await getVpnConnection.ExecuteAsync();
-
-        foreach (var vpn in a.Data)
+        Arp arp = new Arp(pw);
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
+        var arpTable = await arp.ExecuteAsync();
+        Console.WriteLine($"Elapsed: {sw.ElapsedMilliseconds}ms");
+        foreach (var arpEntry in arpTable.Rows)
         {
-            Console.WriteLine($"{vpn.Name}  {vpn.Guid}  {vpn.ServerAddress}");
+            Console.WriteLine($"{arpEntry.InternetAddress} {arpEntry.PhysicalAddress}");
         }
     }
 }

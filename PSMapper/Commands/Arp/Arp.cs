@@ -2,7 +2,7 @@
 using PSMapper.Extensions;
 using PSMapper.Poco.Arp;
 
-namespace PSMapper.Commands;
+namespace PSMapper.Commands.Arp;
 
 public sealed class Arp : ICommand<ArpInfo>
 {
@@ -38,12 +38,12 @@ public sealed class Arp : ICommand<ArpInfo>
 
         ArpInfo arpInfo = new();
 
-                
-        for (int index = 0; index < response.Length; index++)
+        
+        Parallel.For(0, response.Length, index =>
         {
             PSObject? item = response[index];
-            string itemValue = (string)item.BaseObject;
-                    
+            string itemValue = (string) item.BaseObject;
+
             switch (index)
             {
                 case InterfaceRowIndex:
@@ -59,18 +59,18 @@ public sealed class Arp : ICommand<ArpInfo>
                 case > InterfaceRowIndex:
                 {
                     string[] arpRow = itemValue.SplitRow();
-                            
-                    arpInfo.Rows.Add(new ArpInfo.Data()
+
+                    arpInfo.Rows.Add(new ArpInfo.Data
                     {
                         InternetAddress = arpRow[0],
                         PhysicalAddress = arpRow[1],
                         Type = arpRow[2]
                     });
-                            
+
                     break;
                 }
             }
-        }
+        });
 
         return arpInfo;
     }
