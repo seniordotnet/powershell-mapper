@@ -34,7 +34,6 @@ public class TraceRt : PsCommand, IPsCommandArg<TraceRtInfo>
     {
         var result = (await PowerShell
             .AddCommand("tracert")
-            .AddParameter("-h", 2)
             .AddParameter((string) domainName, null)
             .InvokeAsync()).Where(x => !string.IsNullOrEmpty(x.BaseObject as string)).ToArray();
 

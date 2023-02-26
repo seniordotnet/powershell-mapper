@@ -8,7 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PSMapper\PSMapper.csproj" />
+      <PackageReference Include="PSMapper" Version="1.0.2" />
     </ItemGroup>
+
 
 </Project>
