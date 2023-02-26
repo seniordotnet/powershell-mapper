@@ -1,10 +1,7 @@
-﻿using System.Management;
-using System.Management.Automation;
-using System.Management.Automation.Runspaces;
-using Microsoft.Management.Infrastructure;
-using PSMapper.Poco.VpnConnection;
+﻿using System.Management.Automation;
+using PSMapper.Poco.Vpn.VpnConnection;
 
-namespace PSMapper.Commands.GetVpnConnection;
+namespace PSMapper.Commands.Vpn.GetVpnConnection;
 
 public class GetVpnConnection : ICommand<VpnConnectionInfo>
 {

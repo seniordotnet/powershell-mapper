@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PSMapper.Poco.VpnConnection;
+namespace PSMapper.Poco.Vpn.VpnConnection;
 
 public class VpnConnectionInfo
 {

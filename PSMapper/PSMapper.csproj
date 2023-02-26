@@ -21,4 +21,9 @@
       <PackageReference Include="System.Management.Automation" Version="7.3.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Commands\Vpn" />
+      <Folder Include="Poco\Vpn" />
+    </ItemGroup>
+
 </Project>
