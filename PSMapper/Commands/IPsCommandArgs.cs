@@ -1,6 +1,6 @@
 ﻿namespace PSMapper.Commands;
 
-public interface ICommandArgs<T>
+public interface IPsCommandArgs<T>
 {
     /// <summary>
     /// Executes command

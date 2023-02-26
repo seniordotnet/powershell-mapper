@@ -2,6 +2,17 @@
 
 namespace PSMapper.Commands;
 
-public interface IPsCommand
+public abstract class PsCommand
 {
+    protected PowerShell PowerShell { get; }
+    
+    protected PsCommand(PowerShell powerShell)
+    {
+        PowerShell = powerShell;
+    }
+    
+    protected PsCommand()
+    {
+        PowerShell = PowerShell.Create();
+    }
 }

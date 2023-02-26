@@ -4,10 +4,8 @@ using PSMapper.Poco.Arp;
 
 namespace PSMapper.Commands.Arp;
 
-public sealed class Arp : IPsCommand, IPsCommandEmpty<ArpInfo>
+public sealed class Arp : PsCommand, IPsCommandEmpty<ArpInfo>
 {
-    private readonly PowerShell _powerShell;
-    
     private const int InterfaceRowIndex = 0;
     private const int ColumnNamesRowIndex = 1;
 
@@ -15,9 +13,8 @@ public sealed class Arp : IPsCommand, IPsCommandEmpty<ArpInfo>
     /// Ctor. Accept pw as parameter.
     /// </summary>
     /// <param name="powerShell"></param>
-    public Arp(PowerShell powerShell)
+    public Arp(PowerShell powerShell) : base(powerShell)
     {
-        _powerShell = powerShell;
     }
 
     /// <summary>
@@ -25,23 +22,24 @@ public sealed class Arp : IPsCommand, IPsCommandEmpty<ArpInfo>
     /// </summary>
     public Arp()
     {
-        _powerShell = PowerShell.Create();
     }
 
     /// <inheritdoc />
     public async Task<ArpInfo> ExecuteAsync()
     {
-        _powerShell.AddCommand("arp");
-        _powerShell.AddArgument("-a");
+        PowerShell
+            .AddCommand("arp")
+            .AddArgument("-a");
 
-        PSObject[] response = (await _powerShell.InvokeAsync()).Where(x => !string.IsNullOrWhiteSpace(x?.BaseObject as string)).ToArray();
+        PSObject[] response = (await PowerShell.InvokeAsync())
+            .Where(x => !string.IsNullOrWhiteSpace(x?.BaseObject as string)).ToArray();
 
         ArpInfo arpInfo = new();
 
-        
+
         Parallel.For(0, response.Length, index =>
         {
-            PSObject? item = response[index];
+            PSObject item = response[index];
             string itemValue = (string) item.BaseObject;
 
             switch (index)

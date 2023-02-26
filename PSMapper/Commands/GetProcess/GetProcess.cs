@@ -4,17 +4,14 @@ using PSMapper.Poco.GetProcess;
 
 namespace PSMapper.Commands.GetProcess;
 
-public sealed class GetProcess : IPsCommand, IPsCommandEmpty<GetProcessInfo>
+public sealed class GetProcess : PsCommand, IPsCommandEmpty<GetProcessInfo>
 {
-     private readonly PowerShell _powerShell;
-     
-     /// <summary>
+    /// <summary>
      /// Ctor. Accept pw as parameter.
      /// </summary>
      /// <param name="powerShell"></param>
-     public GetProcess(PowerShell powerShell)
+     public GetProcess(PowerShell powerShell) : base(powerShell)
      {
-         _powerShell = powerShell;
      }
 
      /// <summary>
@@ -22,14 +19,13 @@ public sealed class GetProcess : IPsCommand, IPsCommandEmpty<GetProcessInfo>
      /// </summary>
      public GetProcess()
      {
-         _powerShell = PowerShell.Create();
      }
 
      public async Task<GetProcessInfo> ExecuteAsync()
      {
-         _powerShell.AddCommand("Get-Process");
+         PowerShell.AddCommand("Get-Process");
 
-         var result = await _powerShell.InvokeAsync();
+         PSDataCollection<PSObject>? result = await PowerShell.InvokeAsync();
 
          return new GetProcessInfo
          {

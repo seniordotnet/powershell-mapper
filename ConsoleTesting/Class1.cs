@@ -12,8 +12,12 @@ public class Class1
     {
         using PowerShell? pw = PowerShell.Create();
 
-        ConnectToVpn connectToVpn = new ConnectToVpn();
-        await connectToVpn.ExecuteAsync("BegetVPN");
+        DisconnectFromVpn disconnectFromVpn = new DisconnectFromVpn(pw);
+        await disconnectFromVpn.ExecuteAsync("BegetVPN");
+
+
+        // ConnectToVpn connectToVpn = new ConnectToVpn();
+        // await connectToVpn.ExecuteAsync("BegetVPN");
 
         // Arp arp = new Arp(pw);
         // Stopwatch sw = new Stopwatch();

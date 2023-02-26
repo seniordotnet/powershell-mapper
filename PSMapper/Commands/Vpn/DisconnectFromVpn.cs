@@ -2,23 +2,23 @@
 
 namespace PSMapper.Commands.Vpn;
 
-public sealed class ConnectToVpn : PsCommand, IPsCommandArg<bool>
+public class DisconnectFromVpn : PsCommand, IPsCommandArg<bool>
 {
     /// <summary>
     /// Ctor. Connect to a VPN
     /// </summary>
     /// <param name="powerShell"></param>
-    public ConnectToVpn(PowerShell powerShell) : base(powerShell){}
+    public DisconnectFromVpn(PowerShell powerShell) : base(powerShell){}
 
     /// <summary>
     /// Ctor. Create a new PowerShell instance
     /// </summary>
-    public ConnectToVpn()
+    public DisconnectFromVpn()
     {
     }
     
     /// <summary>
-    /// Connect to a VPN
+    /// Disconnect from a VPN
     /// </summary>
     /// <param name="vpnName">Vpn name</param>
     /// <returns></returns>
@@ -26,7 +26,7 @@ public sealed class ConnectToVpn : PsCommand, IPsCommandArg<bool>
     {
         await PowerShell
             .AddCommand("rasdial")
-            .AddParameter((string)vpnName, null)
+            .AddParameter((string)vpnName, "/disconnect")
             .InvokeAsync();
 
         return true;
