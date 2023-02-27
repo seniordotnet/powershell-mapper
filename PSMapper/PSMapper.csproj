@@ -13,9 +13,11 @@
         <RepositoryUrl>https://github.com/seniordotnet/powershell-mapper</RepositoryUrl>
         <RepositoryType>github</RepositoryType>
         <PackageTags>powershell, object, mapper</PackageTags>
-        <Version>1.0.4</Version>
-        <PackageReleaseNotes>modify readme md. add examples</PackageReleaseNotes>
+        <Version>1.0.5</Version>
+        <PackageReleaseNotes>add pnPSignedDriver and ping command</PackageReleaseNotes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>sgKey.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
 
     <ItemGroup>
