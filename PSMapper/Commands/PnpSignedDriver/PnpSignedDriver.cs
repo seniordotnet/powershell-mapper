@@ -28,33 +28,32 @@ public class PnpSignedDriver : PsCommand, IPsCommandEmpty<PnpSignedDriverInfo>
     {
         var result = await PowerShell.AddScript("Get-WmiObject Win32_PnPSignedDriver").InvokeAsync();
 
-        var pnpSignedDriverInfo = new PnpSignedDriverInfo();
-
-        foreach (var psObject in result)
+        var pnpSignedDriverInfo = new PnpSignedDriverInfo
         {
-            pnpSignedDriverInfo.Data.Add(new PnpSignedDriverInfo.PnpSignedDriverInfoData()
-            {
-                Caption = psObject.Properties["Caption"].Value as string,
-                ClassGuid = Guid.TryParse(psObject.Properties["ClassGuid"].Value as string, out var classGuid)
-                    ? classGuid
-                    : null,
-                CompatId = psObject.Properties["CompatID"].Value as string,
-                CreationClassName = psObject.Properties["CreationClassName"].Value as string,
-                Description = psObject.Properties["Description"].Value as string,
-                DeviceClass = psObject.Properties["DeviceClass"].Value as string,
-                DeviceId = psObject.Properties["DeviceId"].Value as string,
-                DriverProviderName = psObject.Properties["DriverProviderName"].Value as string,
-                DriverVersion = psObject.Properties["DriverVersion"].Value as string,
-                FriendlyName = psObject.Properties["FriendlyName"].Value as string,
-                HardwareId = psObject.Properties["HardwareId"].Value as string,
-                InfName = psObject.Properties["InfName"].Value as string,
-                IsSigned =
-                    bool.TryParse(psObject.Properties["IsSigned"].Value as string, out var isSigned) ? isSigned : null,
-                Manufacturer = psObject.Properties["Manufacturer"].Value as string,
-                Pdo = psObject.Properties["PDO"].Value as string,
-                Name = psObject.Properties["Name"].Value as string
-            });
-        }
+            Data = result.AsParallel().Select(psObject =>
+                new PnpSignedDriverInfo.PnpSignedDriverInfoData()
+                {
+                    Caption = psObject.Properties["Caption"].Value as string,
+                    ClassGuid = Guid.TryParse(psObject.Properties["ClassGuid"].Value as string, out var classGuid)
+                        ? classGuid
+                        : null,
+                    CompatId = psObject.Properties["CompatID"].Value as string,
+                    CreationClassName = psObject.Properties["CreationClassName"].Value as string,
+                    Description = psObject.Properties["Description"].Value as string,
+                    DeviceClass = psObject.Properties["DeviceClass"].Value as string,
+                    DeviceId = psObject.Properties["DeviceId"].Value as string,
+                    DriverProviderName = psObject.Properties["DriverProviderName"].Value as string,
+                    DriverVersion = psObject.Properties["DriverVersion"].Value as string,
+                    FriendlyName = psObject.Properties["FriendlyName"].Value as string,
+                    HardwareId = psObject.Properties["HardwareId"].Value as string,
+                    InfName = psObject.Properties["InfName"].Value as string,
+                    IsSigned =
+                        bool.TryParse(psObject.Properties["IsSigned"].Value as string, out var isSigned) ? isSigned : null,
+                    Manufacturer = psObject.Properties["Manufacturer"].Value as string,
+                    Pdo = psObject.Properties["PDO"].Value as string,
+                    Name = psObject.Properties["Name"].Value as string
+                }).ToList()
+        };
 
         return pnpSignedDriverInfo;
     }
