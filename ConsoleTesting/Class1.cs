@@ -1,5 +1,7 @@
 ﻿using System.Management.Automation;
+using System.Net.NetworkInformation;
 using PSMapper.Commands.PnpSignedDriver;
+using Ping = PSMapper.Commands.Ping.Ping;
 
 namespace ConsoleTesting;
 
@@ -9,8 +11,20 @@ public class Class1
     {
         using PowerShell? pw = PowerShell.Create();
 
-        PnpSignedDriver pnpSignedDriver = new PnpSignedDriver(pw);
-        var result = await pnpSignedDriver.ExecuteAsync();
+        var ping = new Ping(pw);
+        var result = await ping.ExecuteAsync("google.com");
+
+        Console.WriteLine($"{result.Domain}  {result.IpAddress}");
+        
+        foreach(var r in result.Data)
+        {
+            Console.WriteLine($"{r.Time} {r.Ttl}");
+        }
+
+        Console.WriteLine($"{result.Lost} {result.Received} {result.Sent}");
+        
+        // PnpSignedDriver pnpSignedDriver = new PnpSignedDriver(pw);
+        // var result = await pnpSignedDriver.ExecuteAsync();
 
         // TraceRt traceRt = new TraceRt(pw);
         // TraceRtInfo traceRtInfo = await traceRt.ExecuteAsync("google.com");
