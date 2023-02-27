@@ -7,9 +7,6 @@ namespace PSMapper.Commands.TraceRt;
 
 public class TraceRt : PsCommand, IPsCommandArg<TraceRtInfo>
 {
-    private const int InfoRow = 0;
-    private const int GarbageRow = 1;
-
     /// <summary>
     /// Ctor. Accept powerShell instance
     /// </summary>
@@ -24,6 +21,9 @@ public class TraceRt : PsCommand, IPsCommandArg<TraceRtInfo>
     public TraceRt()
     {
     }
+    
+    private const int InfoRow = 0;
+    private const int GarbageRow = 1;
 
     /// <summary>
     /// TraceRt command to specified domain. 30 hops

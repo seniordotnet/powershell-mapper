@@ -7,9 +7,6 @@ namespace PSMapper.Commands.Arp;
 
 public sealed class Arp : PsCommand, IPsCommandEmpty<ArpInfo>
 {
-    private const int InterfaceRowIndex = 0;
-    private const int ColumnNamesRowIndex = 1;
-
     /// <summary>
     /// Ctor. Accept pw as parameter.
     /// </summary>
@@ -24,6 +21,9 @@ public sealed class Arp : PsCommand, IPsCommandEmpty<ArpInfo>
     public Arp()
     {
     }
+    
+    private const int InterfaceRowIndex = 0;
+    private const int ColumnNamesRowIndex = 1;
 
     /// <inheritdoc />
     public async Task<ArpInfo> ExecuteAsync()
