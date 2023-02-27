@@ -11,5 +11,9 @@
       <PackageReference Include="PSMapper" Version="1.0.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PSMapper\PSMapper.csproj" />
+    </ItemGroup>
+
 
 </Project>
