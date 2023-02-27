@@ -14,6 +14,8 @@ public class Class1
         var ping = new Ping(pw);
         var result = await ping.ExecuteAsync("google.com");
 
+        Console.WriteLine(result is null);
+        
         Console.WriteLine($"{result.Domain}  {result.IpAddress}");
         
         foreach(var r in result.Data)

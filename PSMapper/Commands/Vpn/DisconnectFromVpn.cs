@@ -3,7 +3,7 @@ using PSMapper.Commands.IPsCommands;
 
 namespace PSMapper.Commands.Vpn;
 
-public class DisconnectFromVpn : PsCommand, IPsCommandArg<bool>
+public class DisconnectFromVpn : PsCommand, IPsCommandArg<bool?>
 {
     /// <summary>
     /// Ctor. Connect to a VPN
@@ -23,7 +23,7 @@ public class DisconnectFromVpn : PsCommand, IPsCommandArg<bool>
     /// </summary>
     /// <param name="vpnName">Vpn name</param>
     /// <returns></returns>
-    public async Task<bool> ExecuteAsync(object vpnName)
+    public async Task<bool?> ExecuteAsync(object vpnName)
     {
         await PowerShell
             .AddCommand("rasdial")
