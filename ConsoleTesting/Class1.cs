@@ -1,10 +1,5 @@
-﻿using System.Diagnostics;
-using System.Management.Automation;
-using PSMapper.Commands.Arp;
-using PSMapper.Commands.TraceRt;
-using PSMapper.Commands.Vpn;
-using PSMapper.Commands.Vpn.GetVpnConnection;
-using PSMapper.Poco.TraceRt;
+﻿using System.Management.Automation;
+using PSMapper.Commands.PnpSignedDriver;
 
 namespace ConsoleTesting;
 
@@ -13,6 +8,9 @@ public class Class1
     public static async Task Main()
     {
         using PowerShell? pw = PowerShell.Create();
+
+        PnpSignedDriver pnpSignedDriver = new PnpSignedDriver(pw);
+        var result = await pnpSignedDriver.ExecuteAsync();
 
         // TraceRt traceRt = new TraceRt(pw);
         // TraceRtInfo traceRtInfo = await traceRt.ExecuteAsync("google.com");
@@ -28,11 +26,11 @@ public class Class1
         // ConnectToVpn connectToVpn = new ConnectToVpn();
         // await connectToVpn.ExecuteAsync("BegetVPN");
 
-        Arp arp = new Arp(pw);
-        var arpTable = await arp.ExecuteAsync();
-        foreach (var arpEntry in arpTable.Rows)
-        {
-            Console.WriteLine($"{arpEntry.InternetAddress} {arpEntry.PhysicalAddress}");
-        }
+        // Arp arp = new Arp(pw);
+        // var arpTable = await arp.ExecuteAsync();
+        // foreach (var arpEntry in arpTable.Rows)
+        // {
+        //     Console.WriteLine($"{arpEntry.InternetAddress} {arpEntry.PhysicalAddress}");
+        // }
     }
 }
