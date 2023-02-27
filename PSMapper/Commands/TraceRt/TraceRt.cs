@@ -5,7 +5,7 @@ using PSMapper.Poco.TraceRt;
 
 namespace PSMapper.Commands.TraceRt;
 
-public class TraceRt : PsCommand, IPsCommandArg<TraceRtInfo>
+public class TraceRt : PsCommand, IPsCommandArg<TraceRtInfo?>
 {
     /// <summary>
     /// Ctor. Accept powerShell instance
@@ -30,15 +30,13 @@ public class TraceRt : PsCommand, IPsCommandArg<TraceRtInfo>
     /// </summary>
     /// <param name="domainName">domainName</param>
     /// <returns></returns>
-    public async Task<TraceRtInfo> ExecuteAsync(object domainName)
+    public async Task<TraceRtInfo?> ExecuteAsync(object domainName)
     {
         var result = (await PowerShell
             .AddCommand("tracert")
             .AddParameter((string) domainName, null)
             .InvokeAsync()).Where(x => !string.IsNullOrEmpty(x.BaseObject as string)).ToArray();
 
-        Console.WriteLine(result.Length);
-        
         var traceRtInfo = new TraceRtInfo();
 
         Parallel.For(0, result.Length, index =>

@@ -5,7 +5,7 @@ using PSMapper.Poco.Ping;
 
 namespace PSMapper.Commands.Ping;
 
-public class Ping : PsCommand, IPsCommandArg<PingInfo>
+public class Ping : PsCommand, IPsCommandArg<PingInfo?>
 {
     /// <summary>
     /// Ctor. Accepts <see cref="PowerShell"/> instance.
@@ -29,14 +29,17 @@ public class Ping : PsCommand, IPsCommandArg<PingInfo>
     private const int TimeRow = 8;
 
     /// <inheritdoc/>
-    public async Task<PingInfo> ExecuteAsync(object domain)
+    public async Task<PingInfo?> ExecuteAsync(object domain)
     {
         var pingInfo = new PingInfo();
 
         PowerShell.AddCommand("ping").AddArgument((string) domain);
         
         var results = (await PowerShell.InvokeAsync()).Where(x => !string.IsNullOrWhiteSpace(((string)x.BaseObject))).ToArray();
-
+        
+        if (results.Length == 7)
+            return null;
+        
         Parallel.For(0, results.Length, index =>
         {
             if (index == InfoRow)
